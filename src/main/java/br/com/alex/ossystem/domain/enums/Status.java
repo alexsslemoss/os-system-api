@@ -6,7 +6,7 @@ public enum Status {
 
 	ABERTO(0, "ABERTO"),
 	ANDAMENTO(1, "ANDAMENTO"),
-	ENCERRAMENTO(2, "ENCERRAMENTO");
+	ENCERRADO(2, "ENCERRADO");
 
 	private Integer codigo;
 

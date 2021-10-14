@@ -53,13 +53,14 @@ public class OrdemServicoService {
 		Cliente cliente = this.clienteRepository.findById(ordemServicoDTO.getCliente()).orElseThrow(() -> new DataNotFoundException("Cliente infomado não cadastrado"));
 
 		OrdemServico ordemServico = new OrdemServico();
+		ordemServico.setId(ordemServicoDTO.getId() != null ? ordemServicoDTO.getId() : null);
+		ordemServico.setPrioridade(ordemServicoDTO.getPrioridade() == null ? Prioridade.BAIXA : ordemServicoDTO.getPrioridade());
+		ordemServico.setStatus(ordemServicoDTO.getStatus() == null ? Status.ABERTO : ordemServicoDTO.getStatus());
 		ordemServico.setObservacao(ordemServicoDTO.getObservacao());
-		ordemServico.setPrioridade(Prioridade.toEnum(ordemServicoDTO.getPrioridade()));
-		ordemServico.setStatus(Status.toEnum(ordemServicoDTO.getStatus()));
 		ordemServico.setTecnico(tecnico);
 		ordemServico.setCliente(cliente);
 		
-		if (ordemServicoDTO.getStatus().equals(Status.ENCERRAMENTO)) {
+		if (ordemServicoDTO.getStatus() != null && ordemServicoDTO.getStatus().equals(Status.ENCERRADO)) {
 			ordemServico.setDataFechamento(LocalDateTime.now());
 		}
 		
@@ -72,7 +73,7 @@ public class OrdemServicoService {
 		if (optional.isEmpty()) {
 			throw new DataNotFoundException();
 		}
-		
+		ordemServicoDTO.setId(id);
 		OrdemServico save = this.ordemServicoRepository.save(fromDTO(ordemServicoDTO));
 		return new OrdemServicoDTO(save);
 	}

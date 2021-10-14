@@ -1,7 +1,6 @@
 package br.com.alex.ossystem.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -9,22 +8,17 @@ import org.springframework.context.annotation.Profile;
 import br.com.alex.ossystem.services.BDService;
 
 @Configuration
-@Profile("dev")
-public class DevConfig {
+@Profile("test")
+public class FileBDConfig {
 
 	@Autowired
-	private BDService deBdService;
-
-	@Value("${spring.jpa.hibernate.ddl-auto}")
-	private String ddl;
+	private BDService bdService;
 
 	@Bean
-	public boolean instanciaBD() {
-
-		if (this.ddl.equals("create")) {
-			this.deBdService.instanciaBD();
-		}
-		return false;
+	public void instanciaBD() {
+		
+		this.bdService.instanciaBD();
+		
 	}
 
 }
