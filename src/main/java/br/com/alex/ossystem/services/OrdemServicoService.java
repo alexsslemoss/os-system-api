@@ -55,12 +55,12 @@ public class OrdemServicoService {
 		OrdemServico ordemServico = new OrdemServico();
 		ordemServico.setId(ordemServicoDTO.getId() != null ? ordemServicoDTO.getId() : null);
 		ordemServico.setPrioridade(ordemServicoDTO.getPrioridade() == null ? Prioridade.BAIXA : ordemServicoDTO.getPrioridade());
-		ordemServico.setStatus(ordemServicoDTO.getStatus() == null ? Status.ABERTO : ordemServicoDTO.getStatus());
+		ordemServico.setStatus(ordemServicoDTO.getStatus() == null ? Status.ABERTA : ordemServicoDTO.getStatus());
 		ordemServico.setObservacao(ordemServicoDTO.getObservacao());
 		ordemServico.setTecnico(tecnico);
 		ordemServico.setCliente(cliente);
 		
-		if (ordemServicoDTO.getStatus() != null && ordemServicoDTO.getStatus().equals(Status.ENCERRADO)) {
+		if (ordemServicoDTO.getStatus() != null && ordemServicoDTO.getStatus().equals(Status.ENCERRADA)) {
 			ordemServico.setDataFechamento(LocalDateTime.now());
 		}
 		

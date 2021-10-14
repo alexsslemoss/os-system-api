@@ -4,9 +4,9 @@ import java.util.stream.Stream;
 
 public enum Status {
 
-	ABERTO(0, "ABERTO"),
+	ABERTA(0, "ABERTA"),
 	ANDAMENTO(1, "ANDAMENTO"),
-	ENCERRADO(2, "ENCERRADO");
+	ENCERRADA(2, "ENCERRADA");
 
 	private Integer codigo;
 

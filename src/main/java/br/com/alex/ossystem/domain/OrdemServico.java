@@ -51,7 +51,7 @@ public class OrdemServico implements Serializable {
 		super();
 		this.setDataAbertura(LocalDateTime.now());
 		this.setPrioridade(Prioridade.BAIXA);
-		this.setStatus(Status.ABERTO);
+		this.setStatus(Status.ABERTA);
 	}
 
 	public OrdemServico(Integer id, Prioridade prioridade, String observacao, Status status,
